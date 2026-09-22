@@ -1,18 +1,28 @@
 
 <style></style>
 
-<main class="main">
-  <h1> {{ firstMessage }}</h1>
-  <p> THIS IS MY FIRST ANGULAR PROJECT:</p>
-  <h2 style="
-    text-transform: uppercase;
-    background-color: #8f8;
-    color: #000;
-    text-align: center;
-    padding: 10px 5px;
-    font-weight: bolder;
-    font-size: 2rem;
-  ">{{ isFirstAngularProject }}</h2>
-</main>
+<div class="comic-list">
+  <h1>COMIC LIST</h1>
+
+  <!-- comicList from app.ts -->
+  @for (comic of comicList; track comic.id) {
+    @if (comic.digitalAvailable) {
+      <h2>{{ comic.title }}</h2>
+      <p>Author(s): {{ comic.author.join(', ') }}</p>
+      <p>Genre(s): {{ comic.genre.join(', ') }}</p>
+      <p style="color: green; font-weight: 800;">Available Digital</p>
+      <hr>
+    } @else {
+      <h2>{{ comic.title }}</h2>
+      <p>Author(s): {{ comic.author.join(', ') }}</p>
+      <p>Genre(s): {{ comic.genre.join(', ') }}</p>
+      <p style="color: red;">Print Only</p>
+      <hr>
+    }
+  } @empty {
+    <p>No Comic to Show.</p>
+  }
+
+</div>
 
 <router-outlet />
