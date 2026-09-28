@@ -1,0 +1,14 @@
+.availability.print {
+  color: red;
+  font-weight: 800;
+}
+.availability.digital {
+  color: green;
+}
+.hiatus.true {
+  color: red;
+  font-weight: 800;
+}
+.hiatus {
+  color: green;
+}

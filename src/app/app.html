@@ -1,25 +1,28 @@
 
-<div class="comic-list">
+<div>
   <h1>COMIC LIST</h1>
 
+
   <!-- comicList from app.ts -->
-  @for (comic of comicList; track comic.id) {
-    @if (comic.digitalAvailable) {
-      <h2>{{ comic.title }}</h2>
-      <p>Author(s): {{ comic.author.join(', ') }}</p>
-      <p>Genre(s): {{ comic.genre.join(', ') }}</p>
-      <p style="color: green; font-weight: 800;">Available Digital</p>
-      <hr>
-    } @else {
-      <h2>{{ comic.title }}</h2>
-      <p>Author(s): {{ comic.author.join(', ') }}</p>
-      <p>Genre(s): {{ comic.genre.join(', ') }}</p>
-      <p style="color: red;">Print Only</p>
-      <hr>
-    }
-  } @empty {
-    <p>No Comic to Show.</p>
-  }
+  <app-comic-list />
+<!--  @for (comic of comicList; track comic.id) {-->
+<!--    @if (comic.digitalAvailable) {-->
+<!--      <h2>{{ comic.title }}</h2>-->
+<!--      <p>Author(s): {{ comic.author.join(', ') }}</p>-->
+<!--      <p>Genre(s): {{ comic.genre.join(', ') }}</p>-->
+<!--      <p style="color: green; font-weight: 800;">Available Digital</p>-->
+<!--      <hr>-->
+<!--    } @else {-->
+<!--      <h2>{{ comic.title }}</h2>-->
+<!--      <p>Author(s): {{ comic.author.join(', ') }}</p>-->
+<!--      <p>Genre(s): {{ comic.genre.join(', ') }}</p>-->
+<!--      <p style="color: red;">Print Only</p>-->
+<!--      <hr>-->
+<!--    }-->
+<!--  }-->
+<!--  @empty {-->
+<!--    <p>No Comic to Show.</p>-->
+<!--  }-->
 
 </div>
 

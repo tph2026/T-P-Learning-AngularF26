@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Comic } from '../shared/models/comic';
 
 @Component({
   imports: [],
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './comic-list-item.css',
   templateUrl: './comic-list-item.html',
 })
-export class ComicListItem {}
+export class ComicListItem {
+  comic = input.required<Comic>();
+  opened = output<Comic>();
+
+  toggle(): void {
+    this.opened.emit(this.comic());
+  }
+}

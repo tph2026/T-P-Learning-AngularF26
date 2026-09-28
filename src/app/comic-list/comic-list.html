@@ -1,1 +1,9 @@
-<p>comic-list works!</p>
+<div class="comic-list">
+
+  @for (comic of comicList; track comic.id) {
+    <app-comic-list-item [comic]="comic" (opened)="onComicOpened($event)"/>
+  }
+  @empty {
+    <p>No comics to show.</p>
+  }
+</div>
