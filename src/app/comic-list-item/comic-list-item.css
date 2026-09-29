@@ -1,3 +1,18 @@
+/* container */
+.comic-card {
+  border: solid 2px #4444;
+  --rd: 10px;
+  margin-top: var(--rd);
+  margin-bottom: var(--rd);
+  padding: var(--rd);
+  border-radius: var(--rd);
+}
+.comic-card * {
+  margin-top:    5px;
+  margin-bottom: 5px;
+}
+
+/* property specific styling */
 .availability.print {
   color: red;
   font-weight: 800;

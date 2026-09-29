@@ -1,5 +1,5 @@
 <div class="comic-card" (click)="toggle()">
-  <h3>{{ comic().title }}</h3>
+  <h2>{{ comic().title }}</h2>
   <p>{{ comic().author }}</p>
   @if (this.opened) {
     <p>Author: {{ comic().author.join(' | ') }}</p>
@@ -10,7 +10,6 @@
     @case (false) { <span class="availability print">Print Only</span> }
     @default { <span class="availability">unknown</span> }
   }
-  @if (comic().isOnHiatus) { <span class="hiatus true"> - ON HIATUS</span> }
-  @else { <span class="hiatus"> - ONGOING</span> }
-  <hr>
+  @if (comic().isOnHiatus) { <span> | </span><span class="hiatus true">ON HIATUS</span> }
+  @else { <span class="hiatus"></span> }
 </div>
