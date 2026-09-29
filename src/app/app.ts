@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
 
 import {Comic} from './shared/models/comic';
-import { ComicListItem } from './comic-list-item/comic-list-item';
 import { ComicList } from './comic-list/comic-list';
 
 @Component({
-  imports: [ComicListItem, ComicList],
+  imports: [ComicList],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

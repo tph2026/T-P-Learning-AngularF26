@@ -1,15 +1,17 @@
 <div class="comic-card" (click)="toggle()">
   <h2>{{ comic().title }}</h2>
-  <p>{{ comic().author }}</p>
-  @if (this.opened) {
-    <p>Author: {{ comic().author.join(' | ') }}</p>
-    <p>Genre: {{ comic().genre.join(' | ') }}</p>
-  }
+  <!-- ALTERNATIVE INFO DISPLAY -->
   @switch (comic().digitalAvailable) {
     @case (true) { <span class="availability digital">Digital Available</span> }
     @case (false) { <span class="availability print">Print Only</span> }
     @default { <span class="availability">unknown</span> }
   }
+  <!-- OPTIONAL INFO DISPLAY -->
   @if (comic().isOnHiatus) { <span> | </span><span class="hiatus true">ON HIATUS</span> }
   @else { <span class="hiatus"></span> }
+  <!-- TOGGLE SECTION -->
+  @if (this.expanded) {
+    <p>Author: {{ comic().author.join(' | ') }}</p>
+    <p>Genre: {{ comic().genre.join(' | ') }}</p>
+  } @else { <p style="color: #8888;"> Show more... </p> }
 </div>

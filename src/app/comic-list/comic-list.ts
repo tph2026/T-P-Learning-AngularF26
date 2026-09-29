@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { Comic } from '../shared/models/comic';
 import { ComicListItem } from '../comic-list-item/comic-list-item';
 
@@ -67,7 +67,9 @@ export class ComicList {
     },
   ];
 
-  protected onComicOpened($event: Comic) {
-    console.log('onComicOpened Function');
+  opened = false; // added to remove warning
+  onComicOpened(comic: Comic): void {
+    console.warn("Opened: " + comic.title);
+    this.opened = !this.opened; // added to remove warning
   }
 }

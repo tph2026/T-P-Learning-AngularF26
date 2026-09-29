@@ -9,9 +9,12 @@ import { Comic } from '../shared/models/comic';
 })
 export class ComicListItem {
   comic = input.required<Comic>();
+  expanded = false;
   opened = output<Comic>();
 
   toggle(): void {
+    this.expanded = !this.expanded;
     this.opened.emit(this.comic());
   }
 }
+
