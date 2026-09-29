@@ -67,9 +67,7 @@ export class ComicList {
     },
   ];
 
-  opened = false; // added to remove warning
   onComicOpened(comic: Comic): void {
     console.warn("Opened: " + comic.title);
-    this.opened = !this.opened; // added to remove warning
   }
 }
