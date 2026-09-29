@@ -1,0 +1,16 @@
+app-comic-list-item {
+  display: block;
+  --rd: 10px;
+  border-radius: var(--rd);
+}
+
+app-comic-list-item.even {
+  background-color: #0482;
+}
+
+app-comic-list-item.first {
+  border-top: solid 20px green;
+}
+app-comic-list-item.last {
+  border-bottom: solid 20px red;
+}

@@ -1,6 +1,6 @@
 /* container */
 .comic-card {
-  border: solid 2px #4444;
+  border: solid 2px #0484;
   --rd: 10px;
   margin-top: var(--rd);
   margin-bottom: var(--rd);
@@ -10,6 +10,9 @@
 .comic-card * {
   margin-top:    5px;
   margin-bottom: 5px;
+}
+.comic-card > img {
+  max-height: 150px;
 }
 
 /* property specific styling */

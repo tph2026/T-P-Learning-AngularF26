@@ -6,4 +6,5 @@ export interface Comic {
   digitalAvailable: boolean;
   printAvailable: boolean | number;
   isOnHiatus?: boolean;
+  image?: string; // optional path to image. relative to "src/"
 }

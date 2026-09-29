@@ -19,6 +19,7 @@ export class ComicList {
       digitalAvailable: true,
       printAvailable: 1000000,
       isOnHiatus: false,
+      image: 'assets/images/onepiece.jpg',
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ export class ComicList {
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
+      image: 'assets/images/naruto.jpg',
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ export class ComicList {
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: true,
+      image: 'assets/images/hunterxhunter.jpg',
     },
     {
       id: 4,
@@ -46,6 +49,7 @@ export class ComicList {
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
+      image: 'assets/images/dragonball.jpg',
     },
     {
       id: 5,
@@ -55,6 +59,7 @@ export class ComicList {
       digitalAvailable: false,
       printAvailable: false,
       isOnHiatus: false,
+      image: 'assets/images/deathnote.jpg',
     },
     {
       id: 6,
@@ -64,6 +69,7 @@ export class ComicList {
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
+      image: 'assets/images/onepunchman.jpg',
     },
   ];
 

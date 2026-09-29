@@ -9,6 +9,11 @@
   <!-- OPTIONAL INFO DISPLAY -->
   @if (comic().isOnHiatus) { <span> | </span><span class="hiatus true">ON HIATUS</span> }
   @else { <span class="hiatus"></span> }
+  <!-- IMAGES-->
+  @if (comic().image) {
+    <br>
+    <img [src]="comic().image" alt="cover"/>
+  }
   <!-- TOGGLE SECTION -->
   @if (this.expanded) {
     <p>Author: {{ comic().author.join(' | ') }}</p>

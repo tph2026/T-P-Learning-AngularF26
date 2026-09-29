@@ -1,7 +1,17 @@
 <div class="comic-list">
 
-  @for (comic of comicList; track comic.id) {
-    <app-comic-list-item [comic]="comic" (opened)="onComicOpened($event)"/>
+  @for (comic of comicList; track comic.id; let index = $index; let first = $first; let last = $last; let count = $count) {
+<!--    @if (first){ <p style="color: green; font-weight: bolder">You have reached the beginning.</p> }-->
+    @if (index == 0) { <p>DISPLAYING {{ count }} COMICS</p> } <!-- display total at the top only -->
+    <app-comic-list-item
+      [comic]="comic"
+      [class.even]="(index+1) % 2 === 0"
+      [class.first]="first"
+      [class.last]="last"
+      (opened)="onComicOpened($event)"
+    >
+    </app-comic-list-item>
+<!--    @if (last){ <p style="color: red;">You have reached the end...</p> }-->
   }
   @empty {
     <p>No comics to show.</p>

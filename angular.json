@@ -23,7 +23,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets" /* needed to render images */
             ],
             "styles": [
               "src/styles.css"
