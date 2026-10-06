@@ -1,4 +1,4 @@
-import {computed, Service, signal} from '@angular/core';
+import {computed, effect, Service, signal} from '@angular/core';
 import {Comic} from '../shared/models/comic';
 
 @Service()
@@ -69,6 +69,11 @@ export class ComicService {
   comicList = this.comics.asReadonly();
   comicCount = computed(() => this.comics().length);
 
+  constructor() {
+    effect(() => {
+      console.log('Comics count is now', this.comicCount());
+    });
+  }
   addComic(c: Comic): void {
     this.comics.update((list) => [...list, c]);
   }
