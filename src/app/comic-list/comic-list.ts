@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { Comic } from '../shared/models/comic';
 import { ComicListItem } from '../comic-list-item/comic-list-item';
+import { ComicService } from '../services/comic-service';
 
 @Component({
   imports: [ComicListItem],
@@ -11,8 +12,11 @@ import { ComicListItem } from '../comic-list-item/comic-list-item';
 export class ComicList {
   /* Comic Array List */
   /* Comic list moved to src\app\services\comic.ts */
+  /* Replaced with Inject */
+  private comicService = inject(ComicService);
+  protected comicList = this.comicService.comicList;
 
-  onComicOpened(comic: Comic): void {
+  protected onComicOpened(comic: Comic): void {
     console.warn("Opened: " + comic.title);
   }
 }
