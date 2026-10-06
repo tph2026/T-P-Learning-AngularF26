@@ -66,15 +66,41 @@ export class ComicService {
       image: 'assets/images/onepunchman.jpg',
     },
   ]);
+
   comicList = this.comics.asReadonly();
   comicCount = computed(() => this.comics().length);
+
+  /* Add a list of removed comics here */
+  private removedComics = signal<Comic[]>([]);
+  removedList = this.removedComics.asReadonly();
 
   constructor() {
     effect(() => {
       console.log('Comics count is now', this.comicCount());
     });
+    /* Effect to displays remaining comics after removal */
+    effect(() => {
+      console.log('Comics remaining: \n', this.comicList());
+      console.log('Comics removed: \n', this.removedList());
+    });
   }
+
+  refreshComics() {
+    console.warn("Comic List Refreshed.");
+    for (let removed of this.removedComics()) {
+      this.comics.update((list) => [...list, removed]);
+      this.removedComics.update((list) => list.filter(i => i.id !== removed.id));
+    }
+  }
+
   addComic(c: Comic): void {
     this.comics.update((list) => [...list, c]);
+  }
+  removeComic(c: Comic): void {
+    /* add the comic to the removed list */
+    this.removedComics.update((list) => [...list, c]);
+
+    /* remove the comic from the original list */
+    this.comics.update((list) => list.filter(i => i.id !== c.id));
   }
 }

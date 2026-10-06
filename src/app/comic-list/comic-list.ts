@@ -16,7 +16,13 @@ export class ComicList {
   private comicService = inject(ComicService);
   protected comicList = this.comicService.comicList;
 
+  onButtonClicked(): void {
+    this.comicService.refreshComics();
+  }
+
   protected onComicOpened(comic: Comic): void {
-    console.warn("Opened: " + comic.title);
+    console.warn("Removed: " + comic.title);
+    /* remove the comic when clicked */
+    this.comicService.removeComic(comic);
   }
 }
