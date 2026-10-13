@@ -8,7 +8,8 @@ export class ComicService {
   private config = inject(COMIC_CONFIG);
 
   /* Comic List moved from src\app\comic-list\comic-list.ts */
-  private comics = signal<Comic[]>([
+  /* change comics from type private to type protected to allow MockComicService override */
+  protected comics = signal<Comic[]>([
     {
       id: 1,
       title: 'One Piece',
