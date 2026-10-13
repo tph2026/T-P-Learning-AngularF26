@@ -1,7 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import { Comic } from '../shared/models/comic';
 import { ComicListItem } from '../comic-list-item/comic-list-item';
 import { ComicService } from '../services/comic-service';
+import { COMIC_CONFIG } from '../config/comic-config';
 
 @Component({
   imports: [ComicListItem],
@@ -15,6 +16,16 @@ export class ComicList {
   /* Replaced with Inject */
   private comicService = inject(ComicService);
   protected comicList = this.comicService.comicList;
+
+  /* Add a button to filter comics based on default API config value "Shounen" */
+  protected filter = inject(COMIC_CONFIG);
+  filterToggled = false;
+  protected onShounenToggled(): void {
+    this.filterToggled = !this.filterToggled;
+    if (this.filterToggled) { console.warn("Filtered by: " + this.filter.defaultGenre); }
+    else { console.warn("Filtered disabled."); }
+    this.comicService.filterComic(this.filterToggled);
+  }
 
   onButtonClicked(): void {
     this.comicService.refreshComics();

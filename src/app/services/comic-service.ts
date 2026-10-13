@@ -1,8 +1,12 @@
-import {computed, effect, Service, signal} from '@angular/core';
+import {computed, effect, inject, Service, signal} from '@angular/core';
 import {Comic} from '../shared/models/comic';
+import {COMIC_CONFIG} from '../config/comic-config';
 
 @Service()
 export class ComicService {
+  /* Injection Token */
+  private config = inject(COMIC_CONFIG);
+
   /* Comic List moved from src\app\comic-list\comic-list.ts */
   private comics = signal<Comic[]>([
     {
@@ -74,6 +78,11 @@ export class ComicService {
   private removedComics = signal<Comic[]>([]);
   removedList = this.removedComics.asReadonly();
 
+  /* Add a list of filtered comics here */
+  private filter = inject(COMIC_CONFIG);
+  private filteredComics = signal<Comic[]>([]);
+  filteredList = this.filteredComics.asReadonly();
+
   constructor() {
     effect(() => {
       console.log('Comics count is now', this.comicCount());
@@ -82,6 +91,7 @@ export class ComicService {
     effect(() => {
       console.log('Comics remaining: \n', this.comicList());
       console.log('Comics removed: \n', this.removedList());
+      console.log('Comics filtered: \n', this.filteredList());
     });
   }
 
@@ -102,5 +112,22 @@ export class ComicService {
 
     /* remove the comic from the original list */
     this.comics.update((list) => list.filter(i => i.id !== c.id));
+  }
+  filterComic(toggled: boolean): void {
+    /* IF FILTER IS ON -> REMOVED FILTERED COMICS FROM LIST */
+    if (toggled){
+      for (let comic of this.comicList()) {
+        if (!comic.genre.includes(this.filter.defaultGenre)){
+          this.filteredComics.update((list) => [...list, comic]); // <- add to filtered list
+          this.comics.update((list) => list.filter(i => i.id !== comic.id)); // <- remove from main list
+        }
+      }
+      return;
+    }
+    /* IF FILTER IS OFF -> ADD BACK COMICS */
+    for (let filtered of this.filteredList()) {
+      this.addComic(filtered); // <- add back the filtered comics to main list
+      this.filteredComics.update((list) => list.filter(i => i.id !== filtered.id)); // <- removed comics from filtered list
+    }
   }
 }
