@@ -11,7 +11,7 @@ import { RouterLink } from "@angular/router";
 export class ComicListItem {
   comic = input.required<Comic>();
   expanded = false;
-  isFavorite = input(false);
+  isFavourite = input(false);
   opened = output<Comic>();
   deleteToggled = output<number>();
   favouriteToggled = output<number>();

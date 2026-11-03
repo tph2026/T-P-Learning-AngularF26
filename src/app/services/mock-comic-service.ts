@@ -14,7 +14,7 @@ export class MockComicService extends ComicService{
         author: ['Eiichiro Oda'],
         genre: ['Adventure', 'Action'],
         digitalAvailable: true,
-        printAvailable: 1000000,
+        printAvailable: true,
         isOnHiatus: false,
         image: 'assets/images/onepiece.jpg',
       },

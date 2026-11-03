@@ -1,0 +1,35 @@
+<h2>{{ isEditMode() ? 'Edit Comic' : 'Add Comic' }}</h2>
+
+<form class="comic-form" [formGroup]="comicForm" (ngSubmit)="onSubmit()">
+  <label> Name
+    <input type="text" formControlName="title" />
+  </label>
+  <!-- touched waits until the user leaves the field, so the message does not appear while they are still typing. -->
+  @if (comicForm.controls.title.touched && comicForm.controls.title.invalid) {
+    <p class="error">Name is required and must be at least 2 characters.</p>
+  }
+  <br>
+  <label> Author
+    <input type="text" formControlName="author" />
+  </label>
+  @if (comicForm.controls.author.invalid && comicForm.controls.author.touched) {
+    <p class="error">Author is required.</p>
+  }
+  <br>
+  <label> Genre
+    <select formControlName="genre">
+      <option value="Shounen">Shounen</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Action">Action</option>
+    </select>
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox" formControlName="isOnHiatus" />
+    On Hiatus
+  </label>
+
+  <button type="submit" [disabled]="comicForm.invalid">
+    {{ isEditMode() ? 'Save Changes' : 'Add Comic' }}
+  </button>
+</form>

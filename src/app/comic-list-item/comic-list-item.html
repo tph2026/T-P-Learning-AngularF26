@@ -2,7 +2,7 @@
   <h2>{{ comic().title }}</h2>
 
   <div class="buttons">
-    <button class="favorite-btn" (click)="onFavouriteClick($event)">Favorite</button>
+    <button class="favourite-btn" (click)="onFavouriteClick($event)">Favourite</button>
     <button class="delete-btn" (click)="onDeleteClick($event)">Delete</button>
     <!-- The array form builds the URL from segments: ['/comics', 3] becomes /comics/3. -->
     <a class="details-link" [routerLink]="['/comics', comic().id]" (click)="$event.stopPropagation()">View details</a>

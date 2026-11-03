@@ -16,7 +16,7 @@ export class ComicService {
       author: ['Eiichiro Oda'],
       genre: ['Adventure', 'Action'],
       digitalAvailable: true,
-      printAvailable: 1000000,
+      printAvailable: true,
       isOnHiatus: false,
       image: 'assets/images/onepiece.jpg',
     },
@@ -112,6 +112,11 @@ export class ComicService {
   addComic(c: Comic): void {
     this.comics.update((list) => [...list, c]);
   }
+
+  // map() builds a new array, so the signal sees a new reference and notifies its readers.
+  updateComic(updated: Comic): void {
+    this.comics.update((list) => list.map((c) => (c.id === updated.id ? updated : c)));
+  }
   removeComic(id: number): void {
     /* add the comic to the removed list */
     /* this.removedComics.update((list) => [...list, c]); */
@@ -138,7 +143,15 @@ export class ComicService {
     }
   }
 
+  // Used by the form when editing. Same lookup as getById, named for that purpose.
+  getComic(id: number): Comic | undefined {
+    return this.getById(id);
+  }
+  // There is no server to hand out ids yet, so a new brewery gets one more than the largest id.
+  nextId(): number {
+    return Math.max(0, ...this.comics().map((c) => c.id)) + 1;
+  }
   getById(id: number): Comic | undefined {
-    return this.comics().find((b) => b.id === id);
+    return this.comics().find((c) => c.id === id);
   }
 }

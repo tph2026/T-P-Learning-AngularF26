@@ -1,0 +1,19 @@
+
+.nav-bar {
+  a {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-color: cornflowerblue;
+    }
+
+    &.active {
+      background-color: cornflowerblue;
+      color: #fff;
+    }
+  }
+}

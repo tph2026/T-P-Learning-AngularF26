@@ -16,10 +16,12 @@ export const appConfig: ApplicationConfig = {
         defaultGenre: 'Shounen'
       }
     },
+    /*
     {
       provide: ComicService,
       useClass: ComicService,
       // useClass: MockComicService,
     },
+    */
   ]
 };
