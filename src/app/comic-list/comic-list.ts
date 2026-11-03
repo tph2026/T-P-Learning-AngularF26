@@ -27,13 +27,13 @@ export class ComicList {
     this.comicService.filterComic(this.filterToggled);
   }
 
-  onButtonClicked(): void {
+  onRefreshClicked(): void {
     this.comicService.refreshComics();
   }
 
   protected onComicOpened(comic: Comic): void {
-    console.warn("Removed: " + comic.title);
+    console.warn("Opened: " + comic.title);
     /* remove the comic when clicked */
-    this.comicService.removeComic(comic);
+    // this.comicService.removeComic(comic.id);
   }
 }

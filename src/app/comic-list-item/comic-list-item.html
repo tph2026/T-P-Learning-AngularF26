@@ -1,5 +1,12 @@
 <div class="comic-card" (click)="toggle()">
   <h2>{{ comic().title }}</h2>
+
+  <div class="buttons">
+    <button class="favorite-btn" (click)="onFavouriteClick($event)">Favorite</button>
+    <button class="delete-btn" (click)="onDeleteClick($event)">Delete</button>
+    <!-- The array form builds the URL from segments: ['/comics', 3] becomes /comics/3. -->
+    <a class="details-link" [routerLink]="['/comics', comic().id]" (click)="$event.stopPropagation()">View details</a>
+  </div>
   <!-- ALTERNATIVE INFO DISPLAY -->
   @switch (comic().digitalAvailable) {
     @case (true) { <span class="availability digital">Digital Available</span> }
@@ -14,9 +21,13 @@
     <br>
     <img [src]="comic().image" alt="cover"/>
   }
+
+
   <!-- TOGGLE SECTION -->
   @if (this.expanded) {
     <p>Author: {{ comic().author.join(' | ') }}</p>
     <p>Genre: {{ comic().genre.join(' | ') }}</p>
   } @else { <p style="color: #8888;"> Show more... </p> }
+
+
 </div>

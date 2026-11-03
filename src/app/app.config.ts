@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import {COMIC_CONFIG} from './config/comic-config';
 import {ComicService} from './services/comic-service';
@@ -8,7 +8,7 @@ import {MockComicService} from './services/mock-comic-service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     {
       provide: COMIC_CONFIG,
       useValue: {
@@ -18,7 +18,8 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: ComicService,
-      useClass: MockComicService
+      useClass: ComicService,
+      // useClass: MockComicService,
     },
   ]
 };

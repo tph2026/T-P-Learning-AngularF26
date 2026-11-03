@@ -72,8 +72,13 @@ export class ComicService {
     },
   ]);
 
+  private favouriteIds = signal<readonly number[]>([]);
+
   comicList = this.comics.asReadonly();
   comicCount = computed(() => this.comics().length);
+
+  favourites = computed(() => this.comics().filter((c) => this.favouriteIds().includes(c.id)));
+  favouriteCount = computed(() => this.favouriteIds().length);
 
   /* Add a list of removed comics here */
   private removedComics = signal<Comic[]>([]);
@@ -107,12 +112,13 @@ export class ComicService {
   addComic(c: Comic): void {
     this.comics.update((list) => [...list, c]);
   }
-  removeComic(c: Comic): void {
+  removeComic(id: number): void {
     /* add the comic to the removed list */
-    this.removedComics.update((list) => [...list, c]);
+    /* this.removedComics.update((list) => [...list, c]); */
 
     /* remove the comic from the original list */
-    this.comics.update((list) => list.filter(i => i.id !== c.id));
+    this.comics.update((list) => list.filter(i => i.id !== id));
+    this.favouriteIds.update((ids) => ids.filter((existing) => existing !== id));
   }
   filterComic(toggled: boolean): void {
     /* IF FILTER IS ON -> REMOVED FILTERED COMICS FROM LIST */
@@ -130,5 +136,9 @@ export class ComicService {
       this.addComic(filtered); // <- add back the filtered comics to main list
       this.filteredComics.update((list) => list.filter(i => i.id !== filtered.id)); // <- removed comics from filtered list
     }
+  }
+
+  getById(id: number): Comic | undefined {
+    return this.comics().find((b) => b.id === id);
   }
 }
