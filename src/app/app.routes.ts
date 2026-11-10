@@ -3,6 +3,8 @@ import {ComicList} from './comic-list/comic-list';
 import {ComicDetail} from './comic-detail/comic-detail';
 import {ComicForm} from './comic-form/comic-form';
 import {PageNotFound} from './page-not-found/page-not-found';
+import {editGuard} from './edit-guard';
+
 
 export const routes: Routes = [
   // pathMatch: 'full' is required for an empty path. Every URL starts with an empty string,
@@ -19,7 +21,8 @@ export const routes: Routes = [
 
   // One component serves both routes. On edit/:id the :id arrives as a signal input, on add it is undefined.
   { path: 'add', component: ComicForm },
-  { path: 'edit/:id', component: ComicForm },
+  // editGuard add a guard to editing
+  { path: 'edit/:id', component: ComicForm, canActivate: [editGuard] },
 
   // The wildcard matches anything, so it must be last.
   { path: '**', component: PageNotFound },

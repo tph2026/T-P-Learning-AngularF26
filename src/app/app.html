@@ -12,6 +12,12 @@
     <a routerLink="/comics/genre/thriller" routerLinkActive="active">Thriller</a>
     <a routerLink="/favourites" routerLinkActive="active">Favourites ({{ favouriteCount() }})</a>
     <a routerLink="/add" routerLinkActive="active">Add comic</a>
+    <!-- TOGGLE SECTION -->
+    @if (comicState.editEnable()) {
+      <button id="lock-btn" (click)="comicState.editToggle()">Lock Editing</button>
+    } @else {
+      <button id="lock-btn" (click)="comicState.editToggle()">Enable Editing</button>
+    }
   </nav>
 
   <!-- The page for the matched route is displayed here. -->
