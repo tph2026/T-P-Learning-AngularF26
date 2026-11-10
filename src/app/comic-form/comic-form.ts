@@ -1,7 +1,9 @@
 import { Component, computed, effect, inject, input } from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ComicService} from '../services/comic-service';
 import { Router } from "@angular/router";
+import {noWhitespaceValidator} from '../validator/whitespace-validator/whitespace-validator';
+import {blankFormValidator} from '../validator/blank-form-validator/blank-form-validator';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -24,11 +26,14 @@ export class ComicForm {
   // and getRawValue() is typed without null.
   protected comicForm = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(2)]],
-    author: ['', Validators.required],
+    author: ['', [Validators.required, noWhitespaceValidator()]],
     genre: ['Shounen'],
     digitalAvailable: [true],
     printAvailable: [true],
     isOnHiatus: [false],
+  }, {
+    // validator for the whole group
+    validators: [blankFormValidator()]
   });
 
   constructor() {

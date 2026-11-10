@@ -13,7 +13,11 @@
     <input type="text" formControlName="author" />
   </label>
   @if (comicForm.controls.author.invalid && comicForm.controls.author.touched) {
-    <p class="error">Author is required.</p>
+    @if (comicForm.controls.author.hasError('required')) {
+      <p class="error">Author is required.</p>
+    } @else if (comicForm.controls.author.hasError('whitespace')) {
+      <p class="error">Author cannot consist of only whitespace.</p>
+    }
   }
   <br>
   <label> Genre
@@ -33,3 +37,7 @@
     {{ isEditMode() ? 'Save Changes' : 'Add Comic' }}
   </button>
 </form>
+
+@if (comicForm.hasError('blankform') && comicForm.touched) {
+  <p class="error">Your form cannot be empty.</p>
+}
