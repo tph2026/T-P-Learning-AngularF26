@@ -11,8 +11,8 @@ export class MockComicService extends ComicService{
       {
         id: 1,
         title: 'One Piece',
-        author: ['Eiichiro Oda'],
-        genre: ['Adventure', 'Action'],
+        author: 'Eiichiro Oda',
+        genre: 'Adventure',
         digitalAvailable: true,
         printAvailable: true,
         isOnHiatus: false,
@@ -21,8 +21,8 @@ export class MockComicService extends ComicService{
       {
       id: 2,
       title: 'Naruto ',
-      author: ['Masashi Kishimoto'],
-      genre: ['Ninja', 'Shounen'],
+      author: 'Masashi Kishimoto',
+      genre: 'Shounen',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,

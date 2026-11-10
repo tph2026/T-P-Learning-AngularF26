@@ -1,3 +1,22 @@
 .error {
   color: #f00;
 }
+.comic-form {
+  border: solid 2px #0484;
+  --rd: 10px;
+  margin-top: var(--rd);
+  margin-bottom: var(--rd);
+  padding: var(--rd);
+  border-radius: var(--rd);
+  position: relative;
+}
+.comic-form * {
+  margin-top:    5px;
+  margin-bottom: 5px;
+}
+.comic-form > img {
+  max-height: 150px;
+}
+.comic-form > button {
+  padding: 5px 10px;
+}

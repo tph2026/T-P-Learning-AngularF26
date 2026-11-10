@@ -1,1 +1,38 @@
-<p>comic-detail works!</p>
+@if (comic(); as c) {
+  <article class="comic-detail">
+    <h2>{{ c.title }}</h2>
+    <div class="actions">
+      <button class="favourite-btn" (click)="comicService.toggleFavourite(c.id)">
+        {{ comicService.isFavourite(c.id) ? '★ Remove from favourites' : '☆ Add to favourites' }}
+      </button>
+      <button class="delete-btn" (click)="onDelete(c.id)">Delete</button>
+      <button class="edit-btn" onclick="this.querySelector('a').click()">Edit
+        <!-- make button click the link -->
+        <a [routerLink]="['/edit', c.id]">Edit</a>
+      </button>
+    </div>
+
+    <!-- ALTERNATIVE INFO DISPLAY -->
+    @switch (c.digitalAvailable) {
+      @case (true) { <span class="availability digital">Digital Available</span> }
+      @case (false) { <span class="availability print">Print Only</span> }
+      @default { <span class="availability">No comic print available</span> }
+    }
+
+    @if (c.image) {
+      <br>
+      <img [src]="c.image" alt="cover"/>
+    }
+    <p>Author: {{ c.author}}</p>
+    <p>Genre: {{ c.genre }}</p>
+  </article>
+
+  <a routerLink="/comics">Back to all comics</a>
+} @else {
+  <!-- This is not the 404 page. The URL matched a route, comics/:id,
+       but there is no data for that id. The ** route is only for URLs that match no route at all. -->
+  <p>No comic with id {{ id() }}.</p>
+  <a routerLink="/comics">Back to all comics</a>
+}
+
+

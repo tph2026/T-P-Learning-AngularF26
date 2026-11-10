@@ -1,8 +1,8 @@
 export interface Comic {
   id: number;
   title: string;
-  author: string[];
-  genre: string[];
+  author: string; // change to string instead to accommodate form type
+  genre: string; // change to string instead to accommodate form type
   digitalAvailable: boolean;
   printAvailable: boolean;
   // printAvailable: boolean | number; // remove union type due to error in comic-form.ts FormBuilder object

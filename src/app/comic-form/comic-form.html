@@ -23,12 +23,12 @@
       <option value="Action">Action</option>
     </select>
   </label>
-
+  <br>
   <label class="checkbox">
     <input type="checkbox" formControlName="isOnHiatus" />
     On Hiatus
   </label>
-
+  <br>
   <button type="submit" [disabled]="comicForm.invalid">
     {{ isEditMode() ? 'Save Changes' : 'Add Comic' }}
   </button>

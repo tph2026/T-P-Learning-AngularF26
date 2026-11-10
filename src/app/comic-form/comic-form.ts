@@ -14,7 +14,7 @@ export class ComicForm {
   private comicService = inject(ComicService);
   private router = inject(Router);
 
-  // Filled from the :id route parameter on /edit/:id by withComponentInputBinding().
+  // Filled from the :id route parameter on /edit/:id by withComponentInputBinding() in app.config.ts
   // On /add there is no :id, so the input stays undefined and the form is in add mode.
   id = input<string>();
 
@@ -24,8 +24,8 @@ export class ComicForm {
   // and getRawValue() is typed without null.
   protected comicForm = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(2)]],
-    author: [[''], Validators.required],
-    genre: [['Shounen']],
+    author: ['', Validators.required],
+    genre: ['Shounen'],
     digitalAvailable: [true],
     printAvailable: [true],
     isOnHiatus: [false],

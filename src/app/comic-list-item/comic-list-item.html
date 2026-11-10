@@ -2,8 +2,8 @@
   <h2>{{ comic().title }}</h2>
 
   <div class="buttons">
-    <button class="favourite-btn" (click)="onFavouriteClick($event)">Favourite</button>
-    <button class="delete-btn" (click)="onDeleteClick($event)">Delete</button>
+<!--    <button class="favourite-btn" (click)="onFavouriteClick($event)">Favourite</button>-->
+<!--    <button class="delete-btn" (click)="onDeleteClick($event)">Delete</button>-->
     <!-- The array form builds the URL from segments: ['/comics', 3] becomes /comics/3. -->
     <a class="details-link" [routerLink]="['/comics', comic().id]" (click)="$event.stopPropagation()">View details</a>
   </div>
@@ -25,8 +25,8 @@
 
   <!-- TOGGLE SECTION -->
   @if (this.expanded) {
-    <p>Author: {{ comic().author.join(' | ') }}</p>
-    <p>Genre: {{ comic().genre.join(' | ') }}</p>
+    <p>Author: {{ comic().author }}</p>
+    <p>Genre: {{ comic().genre }}</p>
   } @else { <p style="color: #8888;"> Show more... </p> }
 
 

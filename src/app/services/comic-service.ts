@@ -13,8 +13,8 @@ export class ComicService {
     {
       id: 1,
       title: 'One Piece',
-      author: ['Eiichiro Oda'],
-      genre: ['Adventure', 'Action'],
+      author: 'Eiichiro Oda',
+      genre: 'Adventure',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
@@ -23,8 +23,8 @@ export class ComicService {
     {
       id: 2,
       title: 'Naruto ',
-      author: ['Masashi Kishimoto'],
-      genre: ['Ninja', 'Shounen'],
+      author: 'Masashi Kishimoto',
+      genre: 'Shounen',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
@@ -33,8 +33,8 @@ export class ComicService {
     {
       id: 3,
       title: 'Hunter x Hunter',
-      author: ['Yoshihiro Togashi'],
-      genre: ['Action', 'Shounen'],
+      author: 'Yoshihiro Togashi',
+      genre: 'Shounen',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: true,
@@ -43,8 +43,8 @@ export class ComicService {
     {
       id: 4,
       title: 'Dragon Ball',
-      author: ['Akira Toriyama'],
-      genre: ['Adventure', 'Shounen'],
+      author: 'Akira Toriyama',
+      genre: 'Adventure',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
@@ -53,8 +53,8 @@ export class ComicService {
     {
       id: 5,
       title: 'Death Note',
-      author: ['Tsugumi Ohba', 'Takeshi Obata'],
-      genre: ['Thriller', 'Detective'],
+      author: 'Takeshi Obata',
+      genre: 'Thriller',
       digitalAvailable: false,
       printAvailable: false,
       isOnHiatus: false,
@@ -63,8 +63,8 @@ export class ComicService {
     {
       id: 6,
       title: 'One-Punch Man',
-      author: ['One', 'Yusuke Murata'],
-      genre: ['Action', 'Comedy'],
+      author: 'One & Yusuke Murata',
+      genre: 'Action',
       digitalAvailable: true,
       printAvailable: true,
       isOnHiatus: false,
@@ -108,14 +108,27 @@ export class ComicService {
       this.removedComics.update((list) => list.filter(i => i.id !== removed.id));
     }
   }
-
   addComic(c: Comic): void {
     this.comics.update((list) => [...list, c]);
+  }
+  toggleFavourite(id: number): void {
+    this.favouriteIds.update((ids) =>
+      ids.includes(id) ? ids.filter((existing) => existing !== id) : [...ids, id],
+    );
+  }
+  isFavourite(id: number): boolean {
+    return this.favouriteIds().includes(id);
   }
 
   // map() builds a new array, so the signal sees a new reference and notifies its readers.
   updateComic(updated: Comic): void {
-    this.comics.update((list) => list.map((c) => (c.id === updated.id ? updated : c)));
+    this.comics.update((list) => list.map((c) => {
+      if (c.id === updated.id) {
+        return { ...updated, image: c.image }; // Keep image the same
+      } else {
+        return c;
+      }
+    }));
   }
   removeComic(id: number): void {
     /* add the comic to the removed list */

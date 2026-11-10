@@ -1,0 +1,53 @@
+.comic-detail {
+  border: solid 2px #0484;
+  --rd: 10px;
+  margin-top: var(--rd);
+  margin-bottom: var(--rd);
+  padding: var(--rd);
+  border-radius: var(--rd);
+  position: relative;
+}
+.comic-detail * {
+  margin-top:    5px;
+  margin-bottom: 5px;
+}
+.comic-detail > img {
+  max-height: 150px;
+}
+.comic-detail > .actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0px !important;
+  display: flex;
+  flex-direction: column;
+}
+.comic-detail > .actions > * {
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  margin: 0px !important;
+}
+.edit-btn {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+.edit-btn > a {
+  display: none;
+}
+
+/* property specific styling */
+.availability.print {
+  color: red;
+  font-weight: 800;
+}
+.availability.digital {
+  color: green;
+}
+.hiatus.true {
+  color: red;
+  font-weight: 800;
+}
+.hiatus {
+  color: green;
+}
